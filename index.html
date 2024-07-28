@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLUTO AI Waiting List</title>
+    <style>
+        body {
+            background: url('a.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid white;
+            background-color: rgba(0, 0, 0, 0.7);
+            margin-top: 50px;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            max-width: 100px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label, input, button {
+            margin: 10px 0;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+        }
+        .count {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="b.jpeg" alt="PLUTO AI Logo">
+        </div>
+        <h1>Join the PLUTO AI Waiting List</h1>
+        <form id="waitingListForm" action="https://formspree.io/f/xkgwjoow" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <button type="submit">Join Waiting List</button>
+        </form>
+        <div class="count" id="count"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let countElement = document.getElementById('count');
+            let count = localStorage.getItem('waitingListCount') || 0;
+            countElement.textContent = `Number of people in the waiting list: ${count}`;
+
+            document.getElementById('waitingListForm').addEventListener('submit', function() {
+                count++;
+                localStorage.setItem('waitingListCount', count);
+                countElement.textContent = `Number of people in the waiting list: ${count}`;
+            });
+        });
+    </script>
+</body>
+</html>
